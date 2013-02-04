@@ -1,0 +1,47 @@
+urxvt*background:	#2d1205
+urxvt*foreground:	#ff9c5b
+urxvt*scrollBar:	false
+urxvt*font:		xft:Telegrama:pixelsize=13
+urxvt*transparent:	false
+urxvt*backgroundPixmap: /home/nycz/.terminalbg.xpm;:root
+
+!black
+*color0: #000000
+*color8: #38281c
+
+!red
+*color1: #cc2814
+*color9: #cc2814
+
+!green
+*color2: #5e7423
+!58743f
+*color10: #ddff6b
+!b9ff81
+
+!yellow
+*color3: #ce7100
+*color11: #ce7100
+
+!blue
+*color4: #4b4266
+!4f3699
+*color12: #4b4266
+
+!magenta
+*color5: #d84273
+*color13: #d84273
+
+!cyan
+*color6: #7a583e
+*color14: #7a583e
+
+!white
+*color7: #e5ce81
+*color15: #e5ce81
+
+urxvt.perl-ext-common: default,clipboard,matcher,-option-popup,-selection-popup,-realine
+URxvt*matcher.button: 1
+URxvt*urlLauncher: chromium
+!urxvt*visualBell: true
+urxvt*urgentOnBell: true
