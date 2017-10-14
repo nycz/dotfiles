@@ -1,0 +1,21 @@
+# vim:ft=gitconfig
+[core]
+    editor = nvim
+[user]
+    name = nycz
+    email = nycz@change.this
+[diff]
+    tool = vimdiffdiff
+[mergetool "vimdiffdiff"]
+    cmd = nvim -d $BASE $LOCAL
+[merge]
+    tool = vimdiffdiff
+[mergetool]
+    prompt = true
+[mergetool "vimdiff"]
+    cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[filter "lfs"]
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f

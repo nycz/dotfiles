@@ -1,0 +1,46 @@
+" vim: filetype=vifm :
+
+colorscheme basicnycz
+
+set incsearch
+set ignorecase
+set vimhelp
+set syscalls
+
+" ====== FILE TYPES =======
+
+" Archives
+fileviewer *.zip,*.7z,*.rar,*.jar,*.ace,*.deb,*.rpm,*.cab,
+          \*.tar,*.tar.bz,*.tbz,*.tar.bz2,*.tbz2,*.tar.gz,*.tgz,*.tar.xz,*.txz
+          \ als %c
+
+" Video
+filetype *.m4v,*.mp4,*.mkv,*.flv,*.h264,*.bik,*.avi,*.hevc,*.mov,
+        \*.3gp {Play video} mpv --vo tct --really-quiet %c
+fileviewer *.m4v,*.mp4,*.mkv,*.flv,*.h264,*.bik,*.avi,*.hevc,*.mov,*.3gp
+          \ ffprobe -hide_banner -pretty %c 2>&1
+
+" Audio
+" filetype *.mp3 {Play} mpg123 %c,
+filetype *.mp3,*.wma,*.wav,*.ogg,*.flac,*.m4a {Play audio} mpv --no-audio-display %c
+"fileviewer *.mp3,*.wav,*.aiff,*.flac,*.ogg soxi %c
+fileviewer *.mp3,*.wav,*.aiff,*.flac,*.ogg,*.m4a,*.wma ffprobe -hide_banner -pretty %c 2>&1
+
+" Webpages
+fileviewer *.html,*.htm,*.xhtml w3m -dump %c
+
+" Images
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm showimg %px %py %pw %ph %c
+filetype *.jpg,*.png,*.gif,*.bmp {Show} timg -C %c ; read -n1 -r -p "Press any key to continue"
+
+
+
+" ====== KEY BINDINGS =======
+" ugly shitty binding just to make it work
+nnoremap <right> :if filetype('.') == 'dir' | cd %c | elseif filetype('.') == 'link' | cd %c | endif<cr>
+
+" Toggle visibility of preview window
+nnoremap w :view<cr>
+vnoremap w :view<cr>gv
+
+

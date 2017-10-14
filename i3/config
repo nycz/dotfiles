@@ -1,0 +1,321 @@
+# vim:filetype=i3
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# nycz's comments:
+#   * Similar commented lines under a command tends to be alternatives (eg. dmenu/rofi)
+#   * This config is not ready out of the box, it will at least need dmenu to work
+
+
+
+# ==== Main variables and settings (for your convenience) ====
+
+# Mod4 is meta/windows
+set $mod Mod4
+
+# Vim-like movement
+set $vim_left n
+set $vim_down e
+set $vim_up i
+set $vim_right o
+
+# Program launcher key
+set $program_launch_key a
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:DejaVu Sans Mono 11
+
+# Window decoration colors
+#client.<colorclass> <border> <background> <text> <indicator> <child_border>
+client.unfocused        #000000 #000000 #999999 #ff0000
+client.focused          #333333 #333333 #eeeeee #ff0000
+
+
+
+# ==== Application shortcut keybindings ====
+
+# Start a terminal
+bindsym $mod+$terminal_key exec i3-sensible-terminal
+
+# Start a program launcher
+bindsym $mod+$program_launch_key exec dmenu_run
+#bindsym $mod+$program_launch_key exec dmenu_recent_aliases
+#bindsym $mod+$program_launch_key exec rofi -show run -matching fuzzy -hide-scrollbar -bw 0 -lines 10 -width 25 -padding 10
+
+# Start a launcher for applications with .desktop files
+bindsym $mod+Shift+$program_launch_key exec --no-startup-id i3-dmenu-desktop
+#bindsym $mod+Shift+$program_launch_key exec rofi -show drun -matching fuzzy -hide-scrollbar -bw 0 -lines 10 -width 25 -padding 10
+
+
+
+# ==== Switch focus between windows ====
+
+# Vim-like keybindings
+bindsym $mod+$vim_left focus left
+bindsym $mod+$vim_down focus down
+bindsym $mod+$vim_up focus up
+bindsym $mod+$vim_right focus right
+
+# Arrow keys
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Mod + mouse wheel
+bindsym --whole-window $mod+button4 focus left
+bindsym --whole-window $mod+button5 focus right
+
+# Move between parent/child
+bindsym $mod+w focus parent
+bindsym $mod+r focus child
+
+
+
+# ==== Move windows ====
+
+# Vim-like keybindings
+bindsym $mod+Shift+$vim_left move left
+bindsym $mod+Shift+$vim_down move down
+bindsym $mod+Shift+$vim_up move up
+bindsym $mod+Shift+$vim_right move right
+
+# Arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Mod + Ctrl + mouse wheel
+bindsym --whole-window $mod+Control+button4 workspace prev_on_output
+bindsym --whole-window $mod+Control+button5 workspace next_on_output
+
+
+
+# ==== Floating windows ====
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+
+
+# ==== Modify layouts ====
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+d layout toggle split
+
+# Split windows
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Move workspace between displays
+bindsym $mod+x move workspace to output left
+
+
+
+# ==== Switch focus between workspaces ====
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# For some reason it's real fiddly to get workspaces
+# to work with keypad with numlock on (aka with digits)
+bindsym $mod+KP_End workspace 11
+bindsym $mod+KP_Down workspace 12
+bindsym $mod+KP_Next workspace 13
+bindsym $mod+KP_Left workspace 14
+bindsym $mod+KP_Begin workspace 15
+bindsym $mod+KP_Right workspace 16
+bindsym $mod+KP_Home workspace 17
+bindsym $mod+KP_Up workspace 18
+bindsym $mod+KP_Prior workspace 19
+bindsym $mod+KP_Insert workspace 20
+
+
+
+# ==== Move windows between workspaces ====
+
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# Still kind of weird how the keypad work, but this seems
+# *to* work so let's go with this. (Yes, this uses
+# digits while the focus switching don't. idk buddy)
+bindsym $mod+Shift+KP_1 move container to workspace 11
+bindsym $mod+Shift+KP_2 move container to workspace 12
+bindsym $mod+Shift+KP_3 move container to workspace 13
+bindsym $mod+Shift+KP_4 move container to workspace 14
+bindsym $mod+Shift+KP_5 move container to workspace 15
+bindsym $mod+Shift+KP_6 move container to workspace 16
+bindsym $mod+Shift+KP_7 move container to workspace 17
+bindsym $mod+Shift+KP_8 move container to workspace 18
+bindsym $mod+Shift+KP_9 move container to workspace 19
+bindsym $mod+Shift+KP_0 move container to workspace 20
+
+
+
+# ==== Administrative keybindings ====
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+p restart
+
+# Exit i3 (logs you out of your X session)
+bindsym $mod+Shift+End exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+
+
+# ==== Resize windows ====
+
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $vim_left resize shrink width 5 px or 5 ppt
+        bindsym $vim_down resize shrink height 5 px or 5 ppt
+        bindsym $vim_up resize grow height 5 px or 5 ppt
+        bindsym $vim_right resize grow width 5 px or 5 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize shrink height 5 px or 5 ppt
+        bindsym Up resize grow height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+p mode "resize"
+
+
+
+# ==== Status bar ====
+
+bar {
+        status_command i3status
+        tray_output primary
+}
+
+
+
+# ==== Various settings ====
+
+hide_edge_borders both
+new_window pixel
+
+focus_follows_mouse no
+workspace_auto_back_and_forth yes
+workspace_layout tabbed
+
+
+
+# ==== i3-gaps specific settings ====
+
+for_window [class="^.*"] border pixel 0
+for_window [class="^Lxterminal$"] border pixel 0
+# gaps inner 10
+# gaps outer 0
+smart_borders on
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 10
+        bindsym minus gaps inner current minus 10
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 10
+        bindsym Shift+minus gaps inner all minus 10
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 10
+        bindsym minus gaps outer current minus 10
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 10
+        bindsym Shift+minus gaps outer all minus 10
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+
+# ==== Quick dropdown terminal (deprecated in search of a better) ====
+
+#exec --no-startup-id urxvt -name dropdownterm
+#for_window [instance="dropdownterm"] floating enable
+#for_window [instance="dropdownterm"] move scratchpad
+#for_window [instance="dropdownterm"] resize grow left 300px
+#for_window [instance="dropdownterm"] resize grow right 300px
+#for_window [instance="dropdownterm"] move scratchpad
+#bindcode $mod+49 [instance="dropdownterm"] scratchpad show
+
+
+
+# ==== Default workspaces for various applications ====
+
+# NOTE: this can get weird real fast if you're in the "wrong"
+#       workspace with eg. chromium and try to open a dialog
+#       window, which then opens in the "right" workspace
+#       while locking your main window.
+# TODO: i3-save-tree
+
+# This should be edited and filled by each custom branch.
+# Also, keep the graphical but non-i3 related stuff in .xinitrc
+# to keep it portable in case of a wm change
+
