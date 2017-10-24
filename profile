@@ -6,4 +6,3 @@ export HISTSIZE=50000
 export EDITOR="nvim"
 
 export PATH="$PATH:$HOME/bin"
-export MYPYPATH="$HOME/gitprojects/stubs"
