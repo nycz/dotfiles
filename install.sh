@@ -61,11 +61,15 @@ install_to_config() {
 
 
 # Parse args
-while :; do
+while test "$1"; do
     case "$1" in
         -s|--simulate)
             printf "Running in simulation mode, nothing will be changed on disk\n"
             SIMULATE='yes'
+            ;;
+        -h|--help)
+            printf "Usage: install.sh [-s]\n\n-s, --simulate     Don't change anything on disk\n"
+            exit 0
             ;;
         *)
             printf "Error: unknown argument: '%s'\n" "$1"
