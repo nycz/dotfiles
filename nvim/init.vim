@@ -103,6 +103,9 @@ Plug 'pangloss/vim-javascript'
 " JSX (new)
 "Plug 'mxw/vim-jsx'
 
+" Elm
+Plug 'ElmCast/elm-vim'
+
 " Handlebars (new)
 Plug 'mustache/vim-mustache-handlebars'
 
@@ -171,7 +174,7 @@ call plug#end()
 " Neomake
 let g:neomake_highlight_lines = 1
 let g:neomake_python_enabled_makers = ['flake8']
-let g:neomake_enabled_makers = ['dash']
+let g:neomake_enabled_makers = ['dash', 'elm-make']
 "let g:neomake_open_list = 2    " Always show error/warning list
 let g:neomake_error_sign = {'text': 'E', 'texthl': 'NeomakeErrorSign'}
 let g:neomake_warning_sign = {'text': 'W', 'texthl': 'NeomakeWarningSign'}
@@ -189,7 +192,10 @@ let g:deoplete#enable_at_startup = 1
 let g:closetag_filenames = "*.html,*.xhtml,*.phtml,*.xml,*.htm"
 
 " dont use polyglot to highlight python
-let g:polyglot_disabled = ['python', 'javascript']
+let g:polyglot_disabled = ['python', 'javascript', 'elm']
+
+" elm-vim
+let g:elm_setup_keybindings = 0
 
 " jedi-vim
 "let g:jedi#completions_enabled = 0
