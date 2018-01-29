@@ -38,3 +38,4 @@ test -e ~/.config/aliasrc && . ~/.config/aliasrc
 # Bash options
 shopt -s direxpand
 shopt -s histappend
+shopt -s checkwinsize
