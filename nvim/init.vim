@@ -35,9 +35,11 @@ set updatetime=250
 " Removes extra autocompletion window at the top
 set completeopt=menu  ",preview
 
-" Set the python3 path
-" let g:python3_host_prog = '/usr/bin/python3'
+" Set correct shell syntax
+let g:is_posix = 1
 
+" Set the python3 path
+let g:python3_host_prog = '/usr/bin/python3'
 " Disable python2
 let g:loaded_python_provider = 1
 
@@ -169,6 +171,7 @@ call plug#end()
 " Neomake
 let g:neomake_highlight_lines = 1
 let g:neomake_python_enabled_makers = ['flake8']
+let g:neomake_enabled_makers = ['dash']
 "let g:neomake_open_list = 2    " Always show error/warning list
 let g:neomake_error_sign = {'text': 'E', 'texthl': 'NeomakeErrorSign'}
 let g:neomake_warning_sign = {'text': 'W', 'texthl': 'NeomakeWarningSign'}
@@ -217,6 +220,11 @@ let mapleader = "\\"
 map <leader>h :nohl<CR>
 " Quit even when holding shift
 command Q :q
+" Open help in a vertical split to the right
+cabbrev h vert bo help
+" Better escape
+imap <leader>e <Esc>
+map <leader>e <Esc>
 
 
 " ## Better colemak-compatible navigation ##
@@ -246,7 +254,7 @@ map <leader>d :bd<CR>
 " Show list
 map <leader>f :ls<CR>
 " Go to file (note the space at the end!!)
-map <leader>g :b
+map <leader>g :b 
 
 " ## Better omni completion ##
 inoremap <C-Space> <C-x><C-o>
@@ -272,6 +280,10 @@ map <leader>, :call SwitchWebSyntax()<CR>
 map <leader>m :Neomake<CR>
 
 
+" ## Copy between different vim instances ##
+command CrossCopy :call writefile(getreg("", 1, 1), "/tmp/vimcrossdump")
+command CrossPaste :r /tmp/vimcrossdump
+
 " =========================================================
 
 
@@ -280,7 +292,7 @@ map <leader>m :Neomake<CR>
 
 " ==6mts==== Misc/temp settings ===========================
 
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
+"let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
 
 " =========================================================
 
