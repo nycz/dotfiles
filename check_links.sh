@@ -8,8 +8,8 @@ test "$XDG_CONFIG_HOME" && CONFIGDIR="$XDG_CONFIG_HOME" || CONFIGDIR="$HOME/.con
 print_result() {
     STATUS="$1"
     COLOR="$2"
-    FNAME=$3
-    printf '%s|\033[%sm%s\033[0m\n' $FNAME "$COLOR" "$STATUS"
+    FNAME="$3"
+    printf '%s|\033[%sm%s\033[0m\n' "$FNAME" "$COLOR" "$STATUS"
 }
 
 same_file() {
@@ -59,4 +59,4 @@ same_directory() {
     same_directory  'lxterminal'   "$CONFIGDIR/lxterminal"
     same_directory  'nvim'         "$CONFIGDIR/nvim"
     same_directory  'xorg.conf.d'  '/etc/X11/xorg.conf.d'
-} | column -t -s'|'
+} | column -t -s'|' | sed "s/\\\\x1b/\\x1b/g"
