@@ -4,15 +4,16 @@
 [ -z "$PS1" ] && return
 
 # Prompt:
-#   tput setaf 8 - bright black
+#   1;32 - bold green
 #   \u - username
 #   \h - hostname
+#   1;34 - bold light blue
 #   \W - basename of working dir
 #   \$ - # or $
-#   tput sgr0 - reset
+#   0 - reset
 # NOTE: you should probably change this to another color
 #       to more easier tell the different machines apart
-PS1="\[$(tput setaf 8)\][\u@\h \W]\\$\[$(tput sgr0)\] "
+PS1='\e[1;32m\u@\h\e[0m:\e[1;34m\W\e[0m\$ '
 
 # Fancier colors in man
 #   mb - start blink
