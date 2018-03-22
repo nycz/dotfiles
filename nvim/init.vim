@@ -10,6 +10,9 @@
 " 5 kbi - Key bindings
 " 6 mts - Misc/temp settings
 " 7 fin - Final things
+"
+" Also, remember to use ! in command declarations so they'll
+" still work when reloading the config.
 
 
 " ==1ntv=== Native settings ==============================
@@ -44,10 +47,10 @@ let g:python3_host_prog = '/usr/bin/python3'
 let g:loaded_python_provider = 1
 
 " Custom file formats
-au BufNewFile,BufRead *.pyi set filetype=python
-au FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
-au FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
-au FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+au! BufNewFile,BufRead *.pyi set filetype=python
+au! FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
+au! FileType css setlocal shiftwidth=2 tabstop=2 softtabstop=2
+au! FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " =========================================================
 
@@ -219,7 +222,7 @@ let mapleader = "\\"
 " Clear highlight
 map <leader>h :nohl<CR>
 " Quit even when holding shift
-command Q :q
+command! Q :q
 " Open help in a vertical split to the right
 cabbrev h vert bo help
 " Better escape
@@ -264,7 +267,7 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " ## Switch between javascript and mustache syntax ##
-function SwitchWebSyntax()
+function! SwitchWebSyntax()
     if &syntax =~ '^javascript'
         set syntax=mustache
         echo "switching to mustache syntax"
@@ -281,8 +284,8 @@ map <leader>m :Neomake<CR>
 
 
 " ## Copy between different vim instances ##
-command CrossCopy :call writefile(getreg("", 1, 1), "/tmp/vimcrossdump")
-command CrossPaste :r /tmp/vimcrossdump
+command! CrossCopy :call writefile(getreg("", 1, 1), "/tmp/vimcrossdump")
+command! CrossPaste :r /tmp/vimcrossdump
 
 " =========================================================
 
